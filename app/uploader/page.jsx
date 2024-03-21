@@ -2,14 +2,22 @@
 import React, { useEffect, useState } from 'react'
 import InputDoc from '@/components/InputDoc/InputDoc'
 import { PiDotsNineThin } from "react-icons/pi"
+import { IoLogOut } from "react-icons/io5"
+import { useRouter } from "next/navigation"
 
 
 
 const Uploader = () => {
-  
-  
+
+  const router = useRouter()
   const [documentos, setDocumentos] = useState([])
-  const token = localStorage.getItem('userId');
+  const token = localStorage.getItem('userId')
+
+  const handleLogout = () => {
+    localStorage.removeItem('userId')
+    router.push('/')
+  }
+
 
    useEffect(() => {
     console.log('token', token)
@@ -31,9 +39,9 @@ const Uploader = () => {
   
   return (
     <div className='lg:p-20 p-10 w-full min-h-screen bg-darkBlue relative'>
-      <PiDotsNineThin className='text-9xl text-yellow absolute -top-10 right-0'/>
-      <PiDotsNineThin className='text-9xl text-yellow absolute bottom-0 left-0'/>
-      <h2 className="text-4xl font-Ourland text-yellow py-2">Documentos</h2>
+      <IoLogOut className='text-4xl text-white absolute top-0 right-0 cursor-pointer m-6' onClick={handleLogout}/>
+      <PiDotsNineThin className='text-9xl text-yellow absolute bottom-0 -left-10'/>
+      <h2 className="text-4xl font-Ourland text-yellow py-4 lg:text-left text-center">Documentos</h2>
       <div className='flex flex-col items-center justify-center gap-2'>
         {documentos && documentos.map((documento, index) => {
           return (

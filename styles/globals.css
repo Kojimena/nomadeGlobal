@@ -15,10 +15,13 @@
   pointer-events: none;
 }
 
-.imageBackground{
-  background: url('/images/background.png') no-repeat center center;
-  background-size: cover;
-  width: 100%;
+@media screen and (min-width: 640px) {
+  .imageBackground{
+    background: url('/images/background.png') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+  }
+  
 }
 
 .labelForm{

@@ -56,7 +56,7 @@ const FormLogin = () => {
   }
     
   return (
-    <form className='p-20 w-full'>
+    <form className='p-20 w-full bg-darkBlue lg:bg-transparent'>
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
