@@ -57,9 +57,12 @@ const FormLogin = () => {
     
   return (
     <form className='p-20 w-full'>
+      <div id="stars"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
       {showPopUp ? <PopUp error={error} /> :
         <><div className="w-full">
-          <h2 className="text-4xl font-Ourland text-darkBlue py-10">Login</h2>
+          <h2 className="text-4xl font-Ourland text-yellow py-10">Login</h2>
           <div className="flex flex-col">
             <div className="flex flex-col">
               <div className="sm:col-span-4">
@@ -94,7 +97,7 @@ const FormLogin = () => {
 
         <div className="mt-6 flex items-center justify-between gap-x-6">
               <button 
-                  type="button" className="text-sm font-semibold leading-6 text-black" onClick={() => router.push('/')}>
+                  type="button" className="text-sm font-semibold leading-6 text-yellow" onClick={() => router.push('/')}>
               Registrarme
               </button>
               <button

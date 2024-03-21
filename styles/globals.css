@@ -30,7 +30,7 @@
 }
 
 .buttonForm{
-  @apply font-montserrat rounded-md bg-yellow px-3 py-2 text-sm font-semibold text-darkBlue shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-none;
+  @apply font-montserrat rounded-md bg-yellow px-3 py-2 text-sm font-semibold text-darkBlue shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-none;
 }
 
 .colCenter{
