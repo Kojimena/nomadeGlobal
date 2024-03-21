@@ -25,12 +25,16 @@
   @apply font-montserrat block text-sm font-medium leading-6 text-white;
 }
 
+.labelDark{
+  @apply font-montserrat block text-sm font-medium leading-6 text-darkBlue;
+}
+
 .inputForm{
-  @apply font-montserrat block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-950 sm:text-sm sm:leading-6 focus-visible:outline-none;
+  @apply font-montserrat block w-full rounded-md bg-white border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-950 sm:text-sm sm:leading-6 focus-visible:outline-none;
 }
 
 .buttonForm{
-  @apply font-montserrat rounded-md bg-yellow px-3 py-2 text-sm font-semibold text-darkBlue shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-none;
+  @apply font-montserrat rounded-md bg-yellow px-6 py-3 text-sm font-semibold text-darkBlue shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-none;
 }
 
 .colCenter{
