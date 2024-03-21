@@ -74,10 +74,13 @@ const FormSignUp = () => {
   }
 
   return (
-    <form className='lg:p-20 p-10 w-full'>
+    <form className='lg:p-20 p-10 w-full bg-darkBlue h-screen imageBackground '>
+      <div id="stars"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
       {showPopUp ? <PopUp error={error} /> : 
       <><div className="w-full">
-          <h2 className="text-4xl font-Ourland text-darkBlue py-10">Registro</h2>
+          <h2 className="text-4xl font-Ourland text-yellow py-10">Registro</h2>
           <div className="flex flex-col">
             <div className="flex flex-col">
               <div className="sm:col-span-3">
@@ -163,7 +166,7 @@ const FormSignUp = () => {
             <button
               type="button"
               onClick={handleLogin}
-              className="font-montserrat flex items-center gap-x-2 text-sm font-semibold leading-6 hover:text-kaqui text-black p-2">
+              className="font-montserrat flex items-center gap-x-2 text-sm font-semibold leading-6 hover:text-kaqui text-yellow p-2">
               Ya tengo una cuenta
             </button>
               <button
