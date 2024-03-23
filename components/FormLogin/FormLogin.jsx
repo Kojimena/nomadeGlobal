@@ -50,6 +50,7 @@ const FormLogin = () => {
         router.push('/uploader')
         localStorage.setItem('userId', data.token)
       }else {
+        console.log(response.message)
         setShowPopUp(true)
         setError("No se pudo iniciar sesión. Intente nuevamente.")
       }
