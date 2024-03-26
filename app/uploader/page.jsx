@@ -18,7 +18,9 @@ const Uploader = () => {
   const [showPopUp, setShowPopUp] = useState(false)
   const [message, setMessage] = useState('')
 
-  
+  const closePopUp = () => {
+    setShowPopUp(false)
+  }
 
   const handleLogout = () => {
     localStorage.removeItem('userId')
@@ -29,15 +31,36 @@ const Uploader = () => {
     setSelectedFile({ nameDocument, file })
   }
 
+  const handleDowloadClick = async (documentType) => {
+    console.log('token', token)
+    const url = `https://ngt-markalbrand56.koyeb.app/documents/${documentType}`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+
+    if (!response.ok) {
+      console.log(response.message)
+      throw new Error('Error al descargar el documento')
+    }
+
+    const data = await response.blob();
+    const file = window.URL.createObjectURL(data);
+    window.open(file)
+  }
+
+
   const handleUploadClick = async (documentType) => {
     if (!selectedFile || selectedFile.nameDocument !== documentType) {
-      alert('Por favor, selecciona un archivo para ' + documentType);
-      return;
+      setShowPopUp(true)
+      setMessage('Por favor selecciona un archivo')
+      return
     }
 
     const form = new FormData()
     form.append('files', selectedFile.file)
-
 
     try {
       console.log(form)
@@ -51,20 +74,21 @@ const Uploader = () => {
       })
 
       if (!response.ok) {
-        console.log(response.message)
         throw new Error('Error al subir el documento')
       }
 
-      const data = await response.json();
-      console.log(data);
       setShowPopUp(true)
       setMessage('Documento subido correctamente')
+      setTimeout(() => {
+        setShowPopUp(false)
+        window.location.reload()  
+      }, 5000)    
     } catch (error) {
-      console.error(error)
       setShowPopUp(true)
       setMessage('Error al subir el documento')
     }
   }
+
 
    useEffect(() => {
     const userToken = localStorage.getItem('userId')
@@ -93,29 +117,22 @@ const Uploader = () => {
   return (
     <div className='lg:p-20 p-10 w-full min-h-screen bg-darkBlue relative flex flex-col lg:justify-start justify-center'>
       <IoLogOut className='text-4xl text-white absolute top-0 right-0 cursor-pointer m-6' onClick={handleLogout}/>
-      <PiDotsNineThin className='text-9xl text-yellow absolute bottom-0 -left-10'/>
+      <PiDotsNineThin className='text-9xl text-yellow absolute bottom-0 lg:-left-10 -left-20'/>
       <h2 className="text-4xl font-Ourland text-yellow py-4 lg:text-left text-center">Documentos</h2>
-      <div className='flex flex-col items-center justify-center gap-2'>
-        {documentos && documentos.map((documento, index) => {
-          documentosSubidos.forEach(doc => console.log(doc.type))
-          console.log(documento)
-          if (documentosSubidos.some(doc => doc.type === documento && doc.status !== 'Rechazado')){
-            return (
-              <p key={index} className='labelForm w-full flex justify-start'>{documento} - 
-                <span className='text-orange'>{documentosSubidos.find(doc => doc.type === documento).status}
-                </span>
-              </p>
-            )
-          }
-          else if (documentosSubidos.some(doc => doc.type === documento && doc.status === 'Rechazado')){
+      <div className='flex flex-col items-center justify-center lg:gap-6 gap-8'>
+        {documentos && Object.keys(documentos).map((documento, index) => {
+
+          if ( documentosSubidos && documentosSubidos.some(doc => doc.type === documento && doc.status )){
             return (
               <InputDoc
               key={index}
               nameDocument={documento}
-              status='Rechazado'
+              status= {documentosSubidos.find(doc => doc.type === documento).status}
               notes = {documentosSubidos.find(doc => doc.type === documento).notes}
               onDocumentSelect={handleDocumentSelect}
               onUploadClick={handleUploadClick}
+              valueInfo={documentos[documento]}
+              onDownloadClick={handleDowloadClick}
               />
             )
           }
@@ -126,13 +143,15 @@ const Uploader = () => {
                 nameDocument={documento}
                 onDocumentSelect={handleDocumentSelect}
                 onUploadClick={handleUploadClick}
+                valueInfo={documentos[documento]}
+                onDownloadClick={handleDowloadClick}
                 />
               )
           }
         }
         )}
       </div>
-      {showPopUp && <AdvicePopUp message={message}/>}
+      {showPopUp && <AdvicePopUp message={message} onClose={closePopUp}/>}
     </div>
   )
 }
