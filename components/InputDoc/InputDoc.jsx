@@ -9,7 +9,7 @@ import { FaFileArrowDown } from "react-icons/fa6"
 
 
 
-const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes , valueInfo, onDownloadClick }) => {
+const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes , valueInfo, onDownloadClick, plantilla, setPlantilla }) => {
   const handleFileChange = (event) => {
     if (event.target.files[0]) {
       onDocumentSelect(nameDocument, event.target.files[0])
@@ -53,8 +53,15 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
                     }
                   {
                     valueInfo && showInfo ?
-                    <span className='absolute bg-white text-darkBlue p-4 rounded-md text-sm font-montserrat'>
+                    <span className='absolute bg-white text-darkBlue p-4 rounded-md text-sm font-montserrat flex flex-col gap-2 items-start'>
                       {valueInfo}
+                      {
+                        plantilla ? 
+                        <button className=' text-green-500 text-sm cursor-pointer underline font-semibold' onClick={setPlantilla}>
+                          Descargar Plantilla
+                        </button>
+                        : ''
+                      }
                       <MdCancel className='text-red-500 ml-2 absolute top-0 right-0 cursor-pointer text-xl' onClick={handleInfo}/>
                     </span> : ''
                   }
