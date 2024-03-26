@@ -39,7 +39,7 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
                     {nameDocument} 
                     {
                     valueInfo ?
-                    <FaCircleInfo className='text-yellow cursor-pointer' onClick={handleInfo} onMouseEnter={handleInfo}/> : ''
+                    <FaCircleInfo className='text-yellow cursor-pointer text-lg' onClick={handleInfo} onMouseEnter={handleInfo}/> : ''
                     } 
                     </span>
                   </label>
@@ -47,7 +47,7 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
                       status ? 
                       <div className='flex items-center gap-2'>
                         <span className={`text-sm font-montserrat ${statusInfo[status]}`}> - Estado: {status}</span>
-                        <FaFileArrowDown className={`cursor-pointer ${statusInfo[status]}`} onClick={() => onDownloadClick(nameDocument)}/>
+                        <FaFileArrowDown className={`cursor-pointer text-lg ${statusInfo[status]}`} onClick={() => onDownloadClick(nameDocument)}/>
                       </div> 
                       : ''
                     }
@@ -61,7 +61,7 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
               </div>
                 {
                     notes ? 
-                    <span className='text-gray-500 text-sm font-medium py-4'>Notas: {notes}, vuelva a subir su archivo.</span> : ''
+                    <span className='text-gray-400 text-sm font-medium py-4'>Notas: {notes}, vuelva a subir su archivo.</span> : ''
                 }
                 {
                   !status || status === "Rechazado" ?

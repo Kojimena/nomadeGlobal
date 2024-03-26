@@ -31,6 +31,28 @@ const Uploader = () => {
     setSelectedFile({ nameDocument, file })
   }
 
+  const handleDowloadFile = async () => {
+    const url = 'https://ngt-markalbrand56.koyeb.app/documents/template';
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+
+    if (!response.ok) {
+      console.log(response.message)
+      throw new Error('Error al descargar el documento')
+    }
+
+    const data = await response.blob();
+    const file = window.URL.createObjectURL(data);
+    window.open(file)
+  }
+
+  
+
+
   const handleDowloadClick = async (documentType) => {
     console.log('token', token)
     const url = `https://ngt-markalbrand56.koyeb.app/documents/${documentType}`;
@@ -117,12 +139,28 @@ const Uploader = () => {
   return (
     <div className='lg:p-20 p-10 w-full min-h-screen bg-darkBlue relative flex flex-col lg:justify-start justify-center'>
       <IoLogOut className='text-4xl text-white absolute top-0 right-0 cursor-pointer m-6' onClick={handleLogout}/>
-      <PiDotsNineThin className='text-9xl text-yellow absolute bottom-0 lg:-left-10 -left-20'/>
+      <PiDotsNineThin className='text-9xl text-yellow absolute bottom-0 lg:-left-10 -right-10'/>
       <h2 className="text-4xl font-Ourland text-yellow py-4 lg:text-left text-center">Documentos</h2>
+      <p className="text-lg font-montserrat font-bold text-white pb-4 lg:text-left text-center">Sube tus documentos para completar tu perfil</p>
       <div className='flex flex-col items-center justify-center lg:gap-6 gap-8'>
         {documentos && Object.keys(documentos).map((documento, index) => {
+          if (index === 0){
+            return (
+              <div key={index} className='flex flex-col items-start gap-4 w-full'>
+                <InputDoc 
+                key={index}
+                nameDocument={documento}
+                onDocumentSelect={handleDocumentSelect}
+                onUploadClick={handleUploadClick}
+                valueInfo={documentos[documento]}
+                onDownloadClick={handleDowloadClick}
+                />
+               <button className='bg-yellow text-darkBlue px-4 py-2 rounded-md text-sm cursor-pointer hover:bg-yellow-600' onClick={() => handleDowloadFile()}>Descargar plantilla</button>
+              </div>
+            )
+          }
 
-          if ( documentosSubidos && documentosSubidos.some(doc => doc.type === documento && doc.status )){
+          else if ( documentosSubidos && documentosSubidos.some(doc => doc.type === documento && doc.status )){
             return (
               <InputDoc
               key={index}
