@@ -10,7 +10,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <main className="flex min-h-screen w-full flex-col items-center justify-center imageBackground bg-darkBlue lg:bg-transparent">
+    <main className="flex min-h-screen w-full flex-col items-center justify-center imageBackground bg-darkBlue lg:bg-transparent gap-4">
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>

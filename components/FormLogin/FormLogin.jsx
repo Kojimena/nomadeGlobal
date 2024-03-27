@@ -32,11 +32,6 @@ const FormLogin = () => {
       return
     }
 
-    /* if (emailInput === "admin" && passwordInput === "admin") {
-      router.push('/admin')
-      return
-    } */
-
       const response = await fetch('https://ngt-markalbrand56.koyeb.app/user/login', {
         method: 'POST',
         headers: {
@@ -47,8 +42,13 @@ const FormLogin = () => {
 
       if (response.ok) {
         const data = await response.json()
-        router.push('/uploader')
         localStorage.setItem('userId', data.token)
+        console.log(data)
+        if (data.role === "lawyer") {
+          router.push('/admin')
+        } else {
+          router.push('/uploader')
+        }
       }else {
         console.log(response.message)
         setShowPopUp(true)
