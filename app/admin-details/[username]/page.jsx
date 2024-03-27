@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react'
 
 const AdminDetails = ({params}) => {
-
+    console.log(params)
     const [token , setToken] = useState('')
+    const [clientData, setClientData] = useState([])
 
     const handleClient = async () => {
         const url = `https://ngt-markalbrand56.koyeb.app/admin/user/${params.username}`
@@ -14,13 +15,15 @@ const AdminDetails = ({params}) => {
               },
         })
 
+        console.log(response)
+
         if (!response.ok) {
             console.log(response.message)
             throw new Error('Error al descargar el documento')
         }
 
         const data = await response.json();
-        console.log(data)
+        setClientData(data)
     }
 
     useEffect(() => {
@@ -33,7 +36,9 @@ const AdminDetails = ({params}) => {
 
 
   return (
-    <div>AdminDetails</div>
+    <div className='lg:p-20 p-10 w-full min-h-screen bg-white relative'>
+        <h1>Documentos de {clientData.username}</h1>
+    </div>
   )
 }
 

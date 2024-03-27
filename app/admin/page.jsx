@@ -97,7 +97,7 @@ const AdminPage = () => {
         {
             filteredData.map((person) => {
                 return (
-                    <button className='flex flex-col gap-4 border-lightBlue border-2 p-4 rounded-md relative' onClick={() => handleClick(person.username)}>
+                    <button className='flex flex-col gap-4 border-lightBlue border-2 p-4 rounded-md relative hover:shadow-xl' key={person.username} onClick={() => handleClick(person.username)}>
                         <div className='absolute top-0 right-0 bg-lightBlue text-white p-2 rounded-xs font-montserrat'>{person.role === 'worker' ? 'Trabajador' : 'Empresa'}</div>
                         <h2 className='text-black font-bold'>Usuario: <span className='font-medium'>{person.username}</span></h2>
                         <h2 className='text-black font-bold'>Nombre: <span className='font-medium'>{person.name} {person.lastName}</span></h2>
