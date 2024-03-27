@@ -98,7 +98,7 @@ const FormLogin = () => {
 
         <div className="mt-6 flex items-center justify-between gap-x-6">
               <button 
-                  type="button" className="text-sm font-semibold leading-6 text-yellow" onClick={() => router.push('/')}>
+                  type="button" className="text-sm font-semibold leading-6 text-yellow" onClick={() => router.push('/register')}>
               Registrarme
               </button>
               <button
