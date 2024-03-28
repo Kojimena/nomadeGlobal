@@ -1,6 +1,6 @@
 "use client"
-import { useEffect, useState } from "react";
-import FormLogin from "@/components/FormLogin/FormLogin";
+import { useEffect, useState } from "react"
+import FormLogin from "@/components/FormLogin/FormLogin"
 
 export default function Home() {
   const [viewportHeight, setViewportHeight] = useState("100vh");
@@ -8,7 +8,7 @@ export default function Home() {
   useEffect(() => {
     const adjustHeight = () => {
       setViewportHeight(`${window.innerHeight}px`);
-    };
+    }
 
     window.addEventListener("resize", adjustHeight);
     adjustHeight();
