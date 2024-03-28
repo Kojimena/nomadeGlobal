@@ -5,7 +5,7 @@ import { AiFillLinkedin } from 'react-icons/ai'
 
 const SocialMedia = () => {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center w-full">
         <a href="https://www.instagram.com/nomadeglobaltalent?igsh=MTYwYjl4cGJkYml4cg==">
             <AiFillInstagram className="text-4xl text-yellow m-4 hover:text-white" />
         </a>

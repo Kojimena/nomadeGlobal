@@ -58,7 +58,7 @@ const FormLogin = () => {
   }
     
   return (
-    <form className='p-20 w-full bg-darkBlue lg:bg-transparent'>
+    <form className='p-20 w-full bg-darkBlue lg:bg-transparent h-full justify-center flex-col flex'>
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
@@ -113,7 +113,7 @@ const FormLogin = () => {
         </div>
         </>
       }
-      <div className='flex-end p-4 lg:p-0 lg:absolute lg:bottom-0 lg:right-10'>
+      <div className='flex-end pt-20 lg:p-0 lg:absolute lg:bottom-0 lg:right-10'>
         <SocialMedia /> 
       </div>
     </form>

@@ -143,7 +143,7 @@ const FormSignUpEnterprise = () => {
               </button>
             </div>
           </>}
-          <div className='flex-end p-6 lg:p-0 lg:absolute lg:bottom-0 lg:right-10'>
+          <div className='flex-end pt-20 lg:p-0 lg:absolute lg:bottom-0 lg:right-10'>
             <SocialMedia /> 
           </div>
     </form>
