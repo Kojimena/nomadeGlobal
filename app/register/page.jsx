@@ -7,7 +7,7 @@ import { GrUserWorker } from "react-icons/gr"
 const Register = () => {
     const router = useRouter()
     return (
-        <main className="flex min-h-screen w-full flex-col items-center justify-center imageBackground bg-darkBlue lg:bg-transparent gap-4">
+        <main className="flex h-screen w-full flex-col items-center justify-center imageBackground bg-darkBlue lg:bg-transparent gap-4">
         <div id="stars"></div>
         <div id="stars2"></div>
         <div id="stars3"></div>
