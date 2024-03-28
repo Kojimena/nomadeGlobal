@@ -7,9 +7,7 @@ const SignUpEnterprise = () => {
   return (
     <div className='flex h-[100vh] w-full flex-col items-center justify-center relative overflow-hidden'>
         <FormSignUpEnterprise />
-        <div className='absolute bottom-0'>
           <SocialMedia />
-        </div>
     </div>
   )
 }
