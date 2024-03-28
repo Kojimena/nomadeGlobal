@@ -63,7 +63,8 @@ const FormLogin = () => {
       <div id="stars3"></div>
       {showPopUp ? <PopUp error={error} /> :
         <><div className="w-full">
-          <h2 className="text-4xl font-Ourland text-yellow py-10">Login</h2>
+          <img src="/images/logo_nomade.png" alt="logo" className="w-40 mx-auto lg:hidden"/>
+          <h2 className="text-4xl font-Ourland text-yellow py-10 lg:text-start text-center">Login</h2>
           <div className="flex flex-col">
             <div className="flex flex-col">
               <div className="sm:col-span-4">
