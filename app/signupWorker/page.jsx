@@ -5,7 +5,7 @@ import SocialMedia from '@/components/SocialMedia/SocialMedia'
 
 const SignUpWorker = () => {
   return (
-    <div className="flex h-[100vh] w-full flex-col items-center justify-center relative">
+    <div className="flex h-[100vh] w-full flex-col items-center justify-center relative overflow-hidden">
         <FormSignUp />
         <div className='absolute bottom-0'>
           <SocialMedia />
