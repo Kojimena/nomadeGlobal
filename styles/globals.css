@@ -48,6 +48,14 @@
   @apply flex flex-col items-center justify-center;
 }
 
+.dropSummary{
+  @apply m-1 btn bg-darkBlue text-white hover:bg-lightBlue border-none;
+}
+
+.dropUl{
+  @apply p-2 shadow menu dropdown-content z-[1] text-white rounded-box w-52 bg-darkBlue;
+}
+
 
 #stars, #stars2, #stars3 {
   position: fixed;

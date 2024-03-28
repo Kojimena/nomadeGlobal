@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from "next/navigation"
 import { MdFilterAlt } from "react-icons/md"
+import { IoLogOut } from "react-icons/io5"
 
 
 
@@ -72,9 +73,15 @@ const AdminPage = () => {
     }
     , [token])
 
+    const handleLogout = () => {
+        localStorage.removeItem('userId')
+        router.push('/')
+    }
+
       
   return (
     <div className='lg:p-20 p-10 w-full min-h-screen bg-white relative'>
+        <IoLogOut className='text-4xl text-darkBlue absolute top-0 right-0 cursor-pointer m-6' onClick={handleLogout}/>
         <h2 className="text-4xl font-Ourland text-darkBlue py-4 lg:text-left text-center">Admin Panel</h2>
         <input
             type='text'
@@ -84,14 +91,14 @@ const AdminPage = () => {
             onChange={handleSearchChange}
         />
         <div className='flex justify-end w-full py-4'>
-            <details className="dropdown">
-                <summary className="m-1 btn bg-darkBlue text-white hover:bg-lightBlue border-none">Filtrar por rol <MdFilterAlt className='text-2xl'/></summary>
-                <ul className="p-2 shadow menu dropdown-content z-[1] text-white rounded-box w-52 bg-darkBlue">
+            <div className="dropdown dropdown-hover">
+                <summary className="dropSummary">Filtrar por rol <MdFilterAlt className='text-2xl'/></summary>
+                <ul className="dropUl">
                     <li className={activeFilter === 'worker' ? 'bg-lightBlue rounded-md' : ''} onClick={() => handleFilter('worker')}><a>Trabajadores</a></li>
                     <li className={activeFilter === 'company' ? 'bg-lightBlue rounded-md' : ''} onClick={() => handleFilter('company')}><a>Empresas</a></li>
                     <li className={activeFilter === 'all' ? 'bg-lightBlue rounded-md' : ''} onClick={handleAll}><a>Todos</a></li>
                 </ul>
-            </details>
+            </div>
         </div>
       <div className='flex flex-col gap-4'>
         {

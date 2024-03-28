@@ -73,7 +73,7 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
                 {
                   !status || status === "Rechazado" ?
                   <div className='flex items-center gap-2'>
-                    <input type="file" className="file-input w-full bg-white font-montserrat text-sm max-h-10 ml-2" onChange={handleFileChange} />
+                    <input type="file" className="file-input w-full bg-white font-montserrat text-sm max-h-10 ml-2" onChange={handleFileChange} accept="application/pdf"/>
                     <button className='bg-green-500 text-white px-4 py-2 rounded-md text-lg cursor-pointer hover:bg-green-600' onClick={() => onUploadClick(nameDocument)} >
                       <MdOutlineDriveFolderUpload size={20} className='text-white'/>
                     </button>

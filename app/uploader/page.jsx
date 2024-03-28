@@ -95,9 +95,17 @@ const Uploader = () => {
         body: form,
       })
 
-      if (!response.ok) {
-        throw new Error('Error al subir el documento')
+      if (response.status === 413) {
+        setShowPopUp(true)
+        setMessage('El archivo es muy grande')
+        return
       }
+      else if (response.status === 415) {
+        setShowPopUp(true)
+        setMessage('El archivo debe ser un pdf')
+        return
+      }
+
 
       setShowPopUp(true)
       setMessage('Documento subido correctamente')

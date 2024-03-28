@@ -7,8 +7,8 @@ const PopUp = ({error, onCancel}) => {
             <div className='flex justify-end w-full'>
                 <button className='font-montserrat bg-darkBlue px-2 py-1 rounded-full text-white' onClick={onCancel}>X</button>
             </div>
-            <h1 className='font-montserrat text-center text-2xl font-bold mt-0'>Error</h1>
-            <p className='font-montserrat text-center'>{error}</p>
+            <h1 className='font-montserrat text-center text-2xl font-bold mt-0 text-red-500'>Error</h1>
+            <p className='font-montserrat text-center text-darkBlue'>{error}</p>
         </div>
     </div>
   )

@@ -52,9 +52,9 @@ const FormSignUpEnterprise = () => {
     })
     if (response.ok) {
       router.push('/login')
-    } else {
+    } else if (response.status === 409) {
       setShowPopUp(true)
-      setError("No se pudo registrar. Intente nuevamente.")
+      setError("Nombre de usuario o email ya están en uso.")
     }
   }
 
