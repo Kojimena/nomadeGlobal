@@ -170,14 +170,16 @@ const AdminDetails = ({params}) => {
                             return(
                             <div key={index} className="flex flex-col justify-start items-start  border-gray-300 border-2 rounded-md w-full relative p-6">
                                 <h2 className='labelDark'>Documento: {document.file_name}</h2>
-                                <div className='flex gap-10'>
+                                <div className='flex lg:gap-10 flex-col lg:flex-row gap-4'>
                                     <div className="dropdown dropdown-hover">
-                                        <summary className="dropSummary">Cambiar status</summary>
-                                        <ul className="dropUl">
-                                            <li onClick={() => handleChangeStatus({documentType: document.type, status: 2, username: params.username})}><a>En revisión</a></li>
-                                            <li onClick={() => handleChangeStatus({documentType: document.type, status: 1, username: params.username})}><a>Aprobado</a></li>
-                                            <li onClick={() => handleChangeStatus({documentType: document.type, status: 0, username: params.username})}><a>Rechazado</a></li>
-                                        </ul>
+                                        <div tabIndex={0} role="button" className="dropSummary">Cambiar status</div>
+                                        <div tabIndex={0} className="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-darkBlue">
+                                            <ul className="card-body">
+                                                <li onClick={() => handleChangeStatus({documentType: document.type, status: 2, username: params.username})}><a>En revisión</a></li>
+                                                <li onClick={() => handleChangeStatus({documentType: document.type, status: 1, username: params.username})}><a>Aprobado</a></li>
+                                                <li onClick={() => handleChangeStatus({documentType: document.type, status: 0, username: params.username})}><a>Rechazado</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                     <div className="dropdown dropdown-hover">
                                         <div tabIndex={0} role="button" className="dropSummary">Añadir nota</div>

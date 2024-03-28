@@ -90,14 +90,16 @@ const AdminPage = () => {
             value={searchTerm} 
             onChange={handleSearchChange}
         />
-        <div className='flex justify-end w-full py-4'>
+        <div className='flex lg:justify-end w-full py-4 justify-start'>
             <div className="dropdown dropdown-hover">
-                <summary className="dropSummary">Filtrar por rol <MdFilterAlt className='text-2xl'/></summary>
-                <ul className="dropUl">
-                    <li className={activeFilter === 'worker' ? 'bg-lightBlue rounded-md' : ''} onClick={() => handleFilter('worker')}><a>Trabajadores</a></li>
-                    <li className={activeFilter === 'company' ? 'bg-lightBlue rounded-md' : ''} onClick={() => handleFilter('company')}><a>Empresas</a></li>
-                    <li className={activeFilter === 'all' ? 'bg-lightBlue rounded-md' : ''} onClick={handleAll}><a>Todos</a></li>
-                </ul>
+                <div tabIndex={0} role="button" className="dropSummary">Cambiar status</div>
+                <div tabIndex={0} className="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-darkBlue">
+                    <ul className="card-body text-white">
+                        <li className={activeFilter === 'worker' ? 'bg-lightBlue rounded-md p-2' : ''} onClick={() => handleFilter('worker')}><a>Trabajadores</a></li>
+                        <li className={activeFilter === 'company' ? 'bg-lightBlue rounded-md p-2' : ''} onClick={() => handleFilter('company')}><a>Empresas</a></li>
+                        <li className={activeFilter === 'all' ? 'bg-lightBlue rounded-md p-2' : ''} onClick={handleAll}><a>Todos</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
       <div className='flex flex-col gap-4'>
