@@ -59,7 +59,7 @@ const FormSignUpEnterprise = () => {
   }
 
   const handleLogin = () => {
-    router.push('/login')
+    router.push('/')
   }
 
   return (
