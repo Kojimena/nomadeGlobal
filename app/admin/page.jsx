@@ -1,8 +1,9 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { useRouter } from "next/navigation"
-import { MdFilterAlt } from "react-icons/md"
 import { IoLogOut } from "react-icons/io5"
+import { RiDeleteBin7Fill } from "react-icons/ri"
+import AdvicePopUp from '@/components/AdvicePopUp/AdvicePopUp'
 
 
 
@@ -12,6 +13,8 @@ const AdminPage = () => {
     const [activeFilter, setActiveFilter] = useState('all')
     const [currentData, setCurrentData] = useState([])
     const [filterData , setFilterData] = useState([])
+    const [showPopUp, setShowPopUp] = useState(false)
+    const [message, setMessage] = useState('')
 
     const router = useRouter()
 
@@ -60,6 +63,33 @@ const AdminPage = () => {
         setActiveFilter('all')
     }
 
+    const handleClosePopUp = () => {
+        setShowPopUp(false)
+    }
+
+    const handleDelete = async (username) => {
+        const url = `https://ngt-markalbrand56.koyeb.app/admin/user/${username}`
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+
+        if (!response.ok) {
+            setMessage("Error al eliminar el usuario")
+            setShowPopUp(true)
+        }else {
+            //timeout 3 seconds
+            setMessage("Usuario eliminado")
+            setShowPopUp(true)
+            setTimeout(() => {
+                handleUsers()
+                setShowPopUp(false)
+            }, 3000)
+        }
+
+    }
 
     const handleClick = (username) => {
         router.push(`/admin-details/${username}`)
@@ -93,11 +123,11 @@ const AdminPage = () => {
         <div className='flex lg:justify-end w-full py-4 justify-start'>
             <div className="dropdown dropdown-hover">
                 <div tabIndex={0} role="button" className="dropSummary">Filtrar por rol:</div>
-                <div tabIndex={0} className="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-darkBlue">
+                <div tabIndex={0} className="dropdown-content z-[1] card card-compact p-2 shadow bg-darkBlue">
                     <ul className="card-body text-white">
-                        <li className={activeFilter === 'worker' ? 'bg-lightBlue rounded-md p-2' : ''} onClick={() => handleFilter('worker')}><a>Trabajadores</a></li>
-                        <li className={activeFilter === 'company' ? 'bg-lightBlue rounded-md p-2' : ''} onClick={() => handleFilter('company')}><a>Empresas</a></li>
-                        <li className={activeFilter === 'all' ? 'bg-lightBlue rounded-md p-2' : ''} onClick={handleAll}><a>Todos</a></li>
+                        <li className={activeFilter === 'worker' ? 'bg-lightBlue rounded-md p-2' : 'cursor-pointer'} onClick={() => handleFilter('worker')}><a>Trabajadores</a></li>
+                        <li className={activeFilter === 'company' ? 'bg-lightBlue rounded-md p-2' : 'cursor-pointer'} onClick={() => handleFilter('company')}><a>Empresas</a></li>
+                        <li className={activeFilter === 'all' ? 'bg-lightBlue rounded-md p-2' : 'cursor-pointer'} onClick={handleAll}><a>Todos</a></li>
                     </ul>
                 </div>
             </div>
@@ -106,7 +136,8 @@ const AdminPage = () => {
         {
             filteredData.map((person) => {
                 return (
-                    <button className='flex flex-col gap-4 border-lightBlue border-2 p-4 rounded-md relative hover:shadow-xl' key={person.username} onClick={() => handleClick(person.username)}>
+                    <div className='relative w-full'key={person.username}>
+                    <button className='w-full flex flex-col gap-4 border-lightBlue border-2 p-4 rounded-md relative hover:shadow-xl' onClick={() => handleClick(person.username)}>
                         <div className='absolute top-0 right-0 bg-lightBlue text-white p-2 rounded-xs font-montserrat'>{person.role === 'worker' ? 'Trabajador' : 'Empresa'}</div>
                         <h2 className='text-black font-bold'>Usuario: <span className='font-medium'>{person.username}</span></h2>
                         <h2 className='text-black font-bold'>Nombre: <span className='font-medium'>{person.name} {person.lastName}</span></h2>
@@ -115,11 +146,14 @@ const AdminPage = () => {
                         }
                         <h2 className='text-black font-bold'>Email: <span className='font-medium'>{person.email}</span></h2>
                     </button>
+                    <button type='button' className='absolute bottom-0 right-0 bg-red text-white p-2 rounded-sm bg-red-500 z-10' onClick={() => handleDelete(person.username)}><RiDeleteBin7Fill/></button>
+                    </div>
                 )
             }
             )
         }
         </div>
+        {showPopUp && <AdvicePopUp message={message} setShowPopUp={setShowPopUp} onClose={handleClosePopUp}/>}
         
     </div>
   )

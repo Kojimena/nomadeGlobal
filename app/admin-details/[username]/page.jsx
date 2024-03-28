@@ -203,8 +203,8 @@ const AdminDetails = ({params}) => {
                                     <span className='labelDark'>Documento subido: {document.file_name}</span>
                                     <p className='labelDark'>Estado actual: {document.status}</p>
                                     {document.notes && <p className='labelDark'>Nota: {document.notes}</p>}
-                                    <TbEdit className='text-2xl text-darkBlue cursor-pointer absolute bottom-0 right-0' onClick={() => setEdit({...edit, [index]: true})}/>
-                                    <HiOutlineDocumentDownload className='text-2xl text-darkBlue cursor-pointer absolute bottom-0 right-10' onClick={() => handleDowloadClick(document.type)}/>
+                                    <TbEdit className='text-3xl text-darkBlue cursor-pointer absolute bottom-0 right-0 hover:text-lightBlue' onClick={() => setEdit({...edit, [index]: true})}/>
+                                    <HiOutlineDocumentDownload className='text-3xl text-darkBlue cursor-pointer absolute bottom-0 right-12 hover:text-lightBlue' onClick={() => handleDowloadClick(document.type)}/>
                                 </div>
                             )
                         }

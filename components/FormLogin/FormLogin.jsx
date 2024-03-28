@@ -1,8 +1,10 @@
-"use client";
+"use client"
 import { useState, useEffect } from 'react'
 import { useRouter } from "next/navigation"
 import PopUp from '../PopUp/PopUp'
-import SocialMedia from '../SocialMedia/SocialMedia';
+import SocialMedia from '../SocialMedia/SocialMedia'
+import { FaRegEye } from "react-icons/fa"
+import { FaRegEyeSlash } from "react-icons/fa"
 
 const FormLogin = () => {
   const router = useRouter();
@@ -10,11 +12,24 @@ const FormLogin = () => {
   const [usernameInput, setUsernameInput] = useState('')
   const [error, setError] = useState('')
   const [showPopUp, setShowPopUp] = useState(false)
+  const [inputType, setInputType] = useState('password')
+
 
 
   const handlePassword = (e) => {
     setPasswordInput(e.target.value)
   }
+
+  const togglePasswordVisibility = () => {
+    if (inputType === 'password') {
+      setInputType('text')
+      console.log(inputType)
+    } else {
+      setInputType('password')
+      console.log(inputType)
+    }
+  }
+  
 
   const handleUsername = (e) => {
     setUsernameInput(e.target.value)
@@ -85,13 +100,16 @@ const FormLogin = () => {
                 <label className="labelForm">
                   Contraseña
                 </label>
-                <div className="mt-2">
+                <div className="mt-2 relative">
                   <input
-                    type="text"
+                    type={inputType}
                     autoComplete="password"
                     className="inputForm"
                     onChange={handlePassword}
                   />
+                  <button type="button" onClick={togglePasswordVisibility} className="absolute right-2 top-2">
+                    {inputType === 'password' ? <FaRegEyeSlash className="text-lg text-darkBlue" /> : <FaRegEye className="text-lg text-darkBlue" />}
+                  </button>
                 </div>
               </div>
             </div>

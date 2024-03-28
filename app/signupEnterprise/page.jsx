@@ -4,7 +4,7 @@ import FormSignUpEnterprise from '@/components/FormSignUpEnterprise/FormSignUp'
 
 const SignUpEnterprise = () => {
   return (
-    <div className='flex h-[100vh] w-full flex-col items-center justify-center  overflow-hidden'>
+    <div className='flex h-[calc(100dvh)] w-full flex-col items-center justify-center  overflow-hidden'>
         <FormSignUpEnterprise />
     </div>
   )
