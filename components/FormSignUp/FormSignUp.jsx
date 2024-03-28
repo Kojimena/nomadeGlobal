@@ -163,11 +163,11 @@ const FormSignUp = () => {
             </div>
           </div>
         </div>
-        <div className="mt-6 flex items-center justify-between gap-x-6 lg:flex-row flex-col">
+        <div className="mt-6 flex items-center justify-between gap-x-6 flex-row ">
             <button
               type="button"
               onClick={handleLogin}
-              className="font-montserrat flex items-center gap-x-2 text-sm font-semibold leading-6 hover:text-kaqui text-yellow p-2">
+              className="font-montserrat text-start flex items-center gap-x-2 text-sm font-semibold leading-6 hover:text-kaqui text-white p-2 hover:text-yellow">
               Ya tengo una cuenta
             </button>
               <button
