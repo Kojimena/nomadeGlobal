@@ -92,7 +92,7 @@ const AdminPage = () => {
         />
         <div className='flex lg:justify-end w-full py-4 justify-start'>
             <div className="dropdown dropdown-hover">
-                <div tabIndex={0} role="button" className="dropSummary">Cambiar status</div>
+                <div tabIndex={0} role="button" className="dropSummary">Filtrar por rol:</div>
                 <div tabIndex={0} className="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-darkBlue">
                     <ul className="card-body text-white">
                         <li className={activeFilter === 'worker' ? 'bg-lightBlue rounded-md p-2' : ''} onClick={() => handleFilter('worker')}><a>Trabajadores</a></li>
