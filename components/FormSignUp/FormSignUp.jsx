@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useRouter } from "next/navigation"
 import PopUp from '../PopUp/PopUp'
+import SocialMedia from '../SocialMedia/SocialMedia'
 
 
 const FormSignUp = () => {
@@ -178,6 +179,9 @@ const FormSignUp = () => {
               </button>
             </div>
           </>}
+          <div className='flex-end p-6 lg:p-0 lg:absolute lg:bottom-0 lg:right-10'>
+            <SocialMedia /> 
+          </div>
     </form>
   )
 }

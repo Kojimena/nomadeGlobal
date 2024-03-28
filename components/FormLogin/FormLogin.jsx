@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from "next/navigation"
 import PopUp from '../PopUp/PopUp'
+import SocialMedia from '../SocialMedia/SocialMedia';
 
 const FormLogin = () => {
   const router = useRouter();
@@ -109,8 +110,12 @@ const FormLogin = () => {
               >
               Login
               </button>
-        </div> </>
+        </div>
+        </>
       }
+      <div className='flex-end p-4 lg:p-0 lg:absolute lg:bottom-0 lg:right-10'>
+        <SocialMedia /> 
+      </div>
     </form>
   )
 }
