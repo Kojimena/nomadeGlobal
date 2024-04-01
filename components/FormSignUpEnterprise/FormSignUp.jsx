@@ -52,7 +52,7 @@ const FormSignUpEnterprise = () => {
       body: JSON.stringify(data)
     })
     if (response.ok) {
-      router.push('/login')
+      router.push('/')
     } else if (response.status === 409) {
       setShowPopUp(true)
       setError("Nombre de usuario o email ya están en uso.")

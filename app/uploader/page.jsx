@@ -156,8 +156,8 @@ const Uploader = () => {
                 <InputDoc 
                 key={index}
                 nameDocument={documento}
-                status={documentosSubidos.find(doc => doc.type === documento).status}
-                notes={documentosSubidos.find(doc => doc.type === documento).notes}
+                status={documentosSubidos?.find(doc => doc.type === documento).status}
+                notes={documentosSubidos?.find(doc => doc.type === documento).notes}
                 onDocumentSelect={handleDocumentSelect}
                 onUploadClick={handleUploadClick}
                 valueInfo={documentos[documento]}

@@ -63,7 +63,7 @@ const FormSignUp = () => {
       body: JSON.stringify(data)
     })
     if (response.ok) {
-      router.push('/login')
+      router.push('/')
     } else if (response.status === 409) {
       setShowPopUp(true)
       setError("Nombre de usuario o email ya están en uso.")
@@ -86,7 +86,7 @@ const FormSignUp = () => {
             <div className="flex flex-col">
               <div className="sm:col-span-3">
                 <label className="labelForm">
-                  Nombre
+                  Nombres
                 </label>
                 <div className="mt-2">
                   <input
@@ -99,7 +99,7 @@ const FormSignUp = () => {
 
               <div className="sm:col-span-4">
                 <label className="labelForm">
-                  Apellido
+                  Apellidos
                 </label>
                 <div className="mt-2">
                   <input
