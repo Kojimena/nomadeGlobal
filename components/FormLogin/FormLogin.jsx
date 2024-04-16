@@ -115,7 +115,7 @@ const FormLogin = () => {
                     {inputType === 'password' ? <FaRegEyeSlash className="text-lg text-darkBlue" /> : <FaRegEye className="text-lg text-darkBlue" />}
                   </button>
                 </div>
-                <button type="button" className="text-sm font-semibold leading-6 text-gray-400 py-2">Olvidé mi contraseña</button>
+                <button type="button" className="text-sm font-semibold leading-6 text-gray-400 py-2" onClick={() => router.push('/forgotPassword')}>¿Olvidaste tu contraseña?</button>
               </div>
             </div>
           </div>

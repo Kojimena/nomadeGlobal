@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useRouter } from "next/navigation"
 import PopUp from '../PopUp/PopUp'
 import SocialMedia from '../SocialMedia/SocialMedia'
+import Notification from '../Notification/Notification'
+
 
 
 const FormSignUp = () => {
@@ -15,6 +17,7 @@ const FormSignUp = () => {
   const [passwordInput, setPasswordInput] = useState('')
   const [error, setError] = useState('')
   const [showPopUp, setShowPopUp] = useState(false)
+  const [showNotification, setShowNotification] = useState(false)
 
   const handleNameChange = (e) => {
     setNameInput(e.target.value)
@@ -63,7 +66,10 @@ const FormSignUp = () => {
       body: JSON.stringify(data)
     })
     if (response.ok) {
-      router.push('/')
+      setShowNotification(true)
+      setTimeout(() => {
+        router.push('/')
+      }, 5000)
     } else if (response.status === 409) {
       setShowPopUp(true)
       setError("Nombre de usuario o email ya están en uso.")
@@ -76,6 +82,7 @@ const FormSignUp = () => {
 
   return (
     <form className='lg:p-20 p-10 w-full bg-darkBlue h-screen imageBackground '>
+      {showNotification && <Notification message="Registro exitoso" onCancel={() => setShowNotification(false)} counterTime={true} timerAction={5} />}
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
