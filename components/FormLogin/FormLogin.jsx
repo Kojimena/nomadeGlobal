@@ -71,6 +71,10 @@ const FormLogin = () => {
         setError("No se pudo iniciar sesión. Intente nuevamente.")
       }
   }
+
+  const handleRegister = () => {
+    router.push('/register')
+  }
     
   return (
     <form className='p-20 w-full bg-darkBlue lg:bg-transparent h-full justify-center flex-col flex'>
@@ -111,14 +115,14 @@ const FormLogin = () => {
                     {inputType === 'password' ? <FaRegEyeSlash className="text-lg text-darkBlue" /> : <FaRegEye className="text-lg text-darkBlue" />}
                   </button>
                 </div>
+                <button type="button" className="text-sm font-semibold leading-6 text-gray-400 py-2">Olvidé mi contraseña</button>
               </div>
             </div>
           </div>
         </div>
-
         <div className="mt-6 flex items-center justify-between gap-x-6">
               <button 
-                  type="button" className="text-sm font-semibold leading-6 text-yellow" onClick={() => router.push('/register')}>
+                  type="button" className="text-sm font-semibold leading-6 text-yellow" onClick={handleRegister}>
               Registrarme
               </button>
               <button
