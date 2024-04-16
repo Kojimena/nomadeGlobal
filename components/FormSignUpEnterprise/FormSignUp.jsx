@@ -70,7 +70,10 @@ const FormSignUpEnterprise = () => {
       <div id="stars3"></div>
       {showPopUp ? <PopUp error={error} /> : 
       <><div className="w-full">
-          <h2 className="text-4xl font-Ourland text-yellow py-10">Registro</h2>
+          <div className='flex justify-between items-center '>
+            <h2 className="text-4xl font-Ourland text-yellow py-10 text-center">Registro</h2>
+            <img src="/images/logo_nomade.png" alt="logo" className="w-16 h-16 lg:hidden"/>
+          </div>
           <div className="flex flex-col">
             <div className="flex flex-col">
               <div className="sm:col-span-3">

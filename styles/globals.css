@@ -33,6 +33,15 @@ input:-webkit-autofill:active  {
   
 }
 
+@media screen and (max-width: 640px) {
+  .imageBackground{
+    background: url('/images/backgroundMobile.png') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+  }
+  
+}
+
 .labelForm{
   @apply font-montserrat block text-sm font-medium leading-6 text-white;
 }
