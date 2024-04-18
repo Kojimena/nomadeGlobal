@@ -175,9 +175,9 @@ const AdminDetails = ({params}) => {
                                         <div tabIndex={0} role="button" className="dropSummary">Cambiar status</div>
                                         <div tabIndex={0} className="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-darkBlue">
                                             <ul className="card-body">
-                                                <li onClick={() => handleChangeStatus({documentType: document.type, status: 3, username: params.username})}><a>En revisión</a></li>
-                                                <li onClick={() => handleChangeStatus({documentType: document.type, status: 2, username: params.username})}><a>Aprobado</a></li>
-                                                <li onClick={() => handleChangeStatus({documentType: document.type, status: 1, username: params.username})}><a>Rechazado</a></li>
+                                                <li className='cursor-pointer' onClick={() => handleChangeStatus({documentType: document.type, status: 3, username: params.username})}><a>En revisión</a></li>
+                                                <li className='cursor-pointer' onClick={() => handleChangeStatus({documentType: document.type, status: 2, username: params.username})}><a>Aprobado</a></li>
+                                                <li className='cursor-pointer' onClick={() => handleChangeStatus({documentType: document.type, status: 1, username: params.username})}><a>Rechazado</a></li>
                                             </ul>
                                         </div>
                                     </div>
