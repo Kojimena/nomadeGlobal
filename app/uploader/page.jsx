@@ -148,7 +148,7 @@ const Uploader = () => {
       <IoLogOut className='text-4xl text-white absolute top-0 right-0 cursor-pointer m-6' onClick={handleLogout}/>
       <h2 className="text-4xl font-Ourland text-yellow py-4 lg:text-left text-center">Documentos</h2>
       <p className="text-lg font-montserrat font-bold text-white pb-4 lg:text-left text-center">Sube tus documentos para completar tu perfil</p>
-      <div className='flex flex-col items-center justify-center lg:gap-6 gap-8'>
+      <div className='flex flex-col items-center justify-center lg:gap-6 gap-8 pt-10'>
         {documentos && Object.keys(documentos).map((documento, index) => {
           if (index === 0){
             return (

@@ -23,9 +23,9 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
   }
 
   const statusInfo = {
-    'Aprobado': "text-green-500",
-    'Rechazado': "text-red-500",
-    'En revisión': "text-orange"
+    'Aprobado': "green-500",
+    'Rechazado': "red-500",
+    'En revisión': "orange"
   }
 
 
@@ -33,7 +33,7 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
     <div className='flex flex-col w-full'>
         <div className='flex items-end gap-2 justify-between'>
             <div className='sm:col-span-3 w-full'>
-              <div className='flex lg:items-center gap-2 relative lg:flex-row flex-col'>
+              <div className='flex items-start gap-2 relative flex-col'>
                   <label className='labelForm'>
                     <span className='flex lg:justify-center items-center gap-2'>
                     {nameDocument} 
@@ -44,12 +44,32 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
                     </span>
                   </label>
                   {
-                      status ? 
-                      <div className='flex items-center gap-2'>
-                        <span className={`text-sm font-montserrat ${statusInfo[status]}`}> - Estado: {status}</span>
-                        <FaFileArrowDown className={`cursor-pointer text-lg ${statusInfo[status]}`} onClick={() => onDownloadClick(nameDocument)}/>
+                      status === "Aprobado" || status === "Rechazado" ?
+                      <div className={`flex flex-col items-start gap-2 w-full bg-${statusInfo[status]} rounded-md`}>
+                        <div className={`flex items-center gap-2 justify-between w-full`}>
+                        <span className={`text-sm font-montserrat text-darkBlue p-2`}> - Estado: {status}</span>
+                        <FaFileArrowDown className={`cursor-pointer text-lg text-darkBlue mr-2`} onClick={() => onDownloadClick(nameDocument)}/>
+                        </div>
+                        {
+                            status !== "Aprobado" && notes ?
+                            <span className='text-black text-sm font-medium p-2 m-0'>Notas: {notes}, vuelva a subir su archivo.</span> : ''
+                        }
                       </div> 
-                      : ''
+                      :   ''
+                    }
+                    {
+                      status === "En revisión" ?
+                      <div className={`flex flex-col items-start gap-2 w-full bg-orange rounded-md`}>
+                            <div className={`flex items-center gap-2 justify-between w-full`}>
+                            <span className={`text-sm font-montserrat text-darkBlue p-2`}> - Estado: {status}</span>
+                            <FaFileArrowDown className={`cursor-pointer text-lg text-darkBlue mr-2`} onClick={() => onDownloadClick(nameDocument)}/>
+                            </div>
+                            {
+                                notes ? 
+                                <span className='text-black text-sm font-medium p-2 m-0'>Notas: {notes}, vuelva a subir su archivo.</span> : ''
+                            }
+                      </div> 
+                      :   ''
                     }
                   {
                     valueInfo && showInfo ?
@@ -67,13 +87,9 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
                   }
               </div>
                 {
-                    notes ? 
-                    <span className='text-gray-400 text-sm font-medium py-4'>Notas: {notes}, vuelva a subir su archivo.</span> : ''
-                }
-                {
                   !status || status === "Rechazado" ?
                   <div className='flex items-center gap-2'>
-                    <input type="file" className="file-input w-full bg-white font-montserrat text-sm max-h-10 ml-2" onChange={handleFileChange} accept="application/pdf"/>
+                    <input type="file" className="file-input w-full bg-white font-montserrat text-sm max-h-10 ml-2 mt-2" onChange={handleFileChange} accept="application/pdf"/>
                     <button className='bg-green-500 text-white px-4 py-2 rounded-md text-lg cursor-pointer hover:bg-green-600' onClick={() => onUploadClick(nameDocument)} >
                       <MdOutlineDriveFolderUpload size={20} className='text-white'/>
                     </button>

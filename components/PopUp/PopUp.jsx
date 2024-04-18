@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 const PopUp = ({error, onCancel}) => {  
   return (
-    <div className='fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-10'>
+    <div className='fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-10 lg:p-0 p-20'>
             <div className='bg-white p-10 rounded-md'>
             <div className='flex justify-end w-full'>
                 <button className='font-montserrat bg-darkBlue px-2 py-1 rounded-full text-white' onClick={onCancel}>X</button>

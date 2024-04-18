@@ -30,11 +30,11 @@ module.exports = {
         "Ourland": "Ourland",
       },
       colors: {
+        "orange": "#f5c64e",
         "blueNormal": "#32466F",
         "darkBlue":"#062856",
         "lightBlue": "#0169a9",
         "yellow": "#FFF96E",
-        "orange": "#FFA500",
       },
     },
   },

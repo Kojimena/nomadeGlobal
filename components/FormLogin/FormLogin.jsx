@@ -86,7 +86,7 @@ const FormLogin = () => {
           <img src="/images/logo_nomade.png" alt="logo" className="w-40 mx-auto lg:hidden"/>
           <h2 className="text-4xl font-Ourland text-yellow py-10 lg:text-start text-center">Login</h2>
           <div className="flex flex-col">
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-4">
               <div className="sm:col-span-4">
                 <label  className="labelForm">
                   Nombre de usuario
