@@ -93,7 +93,7 @@ const FormLogin = () => {
             <div className="flex flex-col gap-4">
               <div className="sm:col-span-4">
                 <label  className="labelForm">
-                  Nombre de usuario o correo electrónico
+                  Usuario ó correo electrónico
                 </label>
                 <div className="mt-2">
                   <input
