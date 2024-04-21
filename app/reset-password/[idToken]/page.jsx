@@ -49,7 +49,6 @@ const ResetPassword = ({params}) => {
             "password": passwordInput,
             "token": params.idToken
         }
-        console.log(data)
 
         const response = await fetch('https://ngt-markalbrand56.koyeb.app/user/password/reset', {
             method: 'POST',

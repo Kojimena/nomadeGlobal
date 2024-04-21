@@ -23,10 +23,8 @@ const FormLogin = () => {
   const togglePasswordVisibility = () => {
     if (inputType === 'password') {
       setInputType('text')
-      console.log(inputType)
     } else {
       setInputType('password')
-      console.log(inputType)
     }
   }
   
@@ -59,7 +57,6 @@ const FormLogin = () => {
       if (response.ok) {
         const data = await response.json()
         localStorage.setItem('userId', data.token)
-        console.log(data)
         if (data.role === "lawyer") {
           router.push('/admin')
         } else {
@@ -70,7 +67,6 @@ const FormLogin = () => {
         setError("Su correo no ha sido verificado. Por favor revise su bandeja de entrada.")
       }
       else {
-        console.log(response.message)
         setShowPopUp(true)
         setError("No se pudo iniciar sesión. Intente nuevamente.")
       }

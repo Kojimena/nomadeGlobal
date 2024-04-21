@@ -9,7 +9,6 @@ import Notification from '@/components/Notification/Notification'
 const ForgotPassword = () => {
     const router = useRouter();
     const [emailInput, setEmailInput] = useState('')
-    const [usernameInput, setUsernameInput] = useState('')
     const [error, setError] = useState('')
     const [showPopUp, setShowPopUp] = useState(false)
     const [showNotification, setShowNotification] = useState(false)
@@ -25,10 +24,8 @@ const ForgotPassword = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         const data = {
-            "email": emailInput,
-            "username": usernameInput
+            "email": emailInput
         }
-        console.log(data)
         if (!emailInput) {
             setShowPopUp(true)
             setError("Por favor complete todos los campos.")
@@ -80,18 +77,6 @@ const ForgotPassword = () => {
                             autoComplete="given-name"
                             className="inputForm"
                             onChange={handleEmailChange} />
-                        </div>
-                    </div>
-                    <div className="col-span-full">
-                        <label className="labelForm">
-                        Nombre de usuario
-                        </label>
-                        <div className="mt-2">
-                        <input
-                            type="text"
-                            autoComplete="given-name"
-                            className="inputForm"
-                            onChange={handleUsernameChange} />
                         </div>
                     </div>
                 <div className="col-span-full py-4 flex justify-end">

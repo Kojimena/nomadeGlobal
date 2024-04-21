@@ -38,7 +38,6 @@ const FormSignUp = () => {
 
     if (isValid) {
       setUsernameInput(e.target.value)
-      console.log('valid')
       setWarning(false)
     }
     else {

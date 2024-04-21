@@ -40,7 +40,6 @@ const Uploader = () => {
     })
 
     if (!response.ok) {
-      console.log(response.message)
       throw new Error('Error al descargar el documento')
     }
 
@@ -53,7 +52,6 @@ const Uploader = () => {
 
 
   const handleDowloadClick = async (documentType) => {
-    console.log('token', token)
     const url = `https://ngt-markalbrand56.koyeb.app/documents/${documentType}`;
     const response = await fetch(url, {
       method: 'GET',
@@ -63,7 +61,6 @@ const Uploader = () => {
     })
 
     if (!response.ok) {
-      console.log(response.message)
       throw new Error('Error al descargar el documento')
     }
 
@@ -84,7 +81,6 @@ const Uploader = () => {
     form.append('files', selectedFile.file)
 
     try {
-      console.log(form)
       const url = `https://ngt-markalbrand56.koyeb.app/documents/${documentType}`;
       const response = await fetch(url, {
         method: 'POST',
@@ -122,9 +118,7 @@ const Uploader = () => {
    useEffect(() => {
     const userToken = localStorage.getItem('userId')
     setToken(userToken)
-    console.log('token', token)
     if (token){
-      console.log('token', userToken)
       const fetchData = async () => {
         const url = 'https://ngt-markalbrand56.koyeb.app/details/documents'
         const response = await fetch(url, {
@@ -136,7 +130,6 @@ const Uploader = () => {
         const data = await response.json()
         setDocumentos(data.data.available_documents)
         setDocumentosSubidos(data.data.user_documents)
-        console.log('data', data)
       }
   
       fetchData()

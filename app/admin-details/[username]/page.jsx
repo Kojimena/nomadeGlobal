@@ -17,7 +17,6 @@ const AdminDetails = ({params}) => {
     const [note, setNote] = useState('')
 
     const handleClient = async () => {
-        console.log(params.username)
         const url = `https://ngt-markalbrand56.koyeb.app/admin/user/${params.username}`
         const response = await fetch(url, {
             method: 'GET',
@@ -27,17 +26,14 @@ const AdminDetails = ({params}) => {
         })
 
         if (!response.ok) {
-            console.log(response.message)
             throw new Error('Error al descargar el documento')
         }
 
         const data = await response.json();
         setClientData(data.user)
-        console.log(data)
     }
 
     const handleChangeStatus = async ({documentType, status, username}) => {
-        console.log(documentType, status, username)
         const body = {
             "document_type": documentType,
             "status": status,
@@ -54,7 +50,8 @@ const AdminDetails = ({params}) => {
         })
 
         if (!response.ok) {
-            console.log(response)
+            setMessage('Error al actualizar el estado')
+            setShowPopUp(true)
         } else {
             //show pop up 3 seconds
             setMessage('Estado actualizado')
@@ -69,7 +66,6 @@ const AdminDetails = ({params}) => {
     } 
 
     const handleAddNote = async ({documentType, note, username}) => {
-        console.log(documentType, note, username)
         const body = {
             "document_type": documentType,
             "note": note,
@@ -86,7 +82,8 @@ const AdminDetails = ({params}) => {
         })
 
         if (!response.ok) {
-            console.log(response)
+            setMessage('Error al añadir la nota')
+            setShowPopUp(true)
         } else {
             //show pop up 3 seconds
             setMessage('Nota añadida')
@@ -100,7 +97,6 @@ const AdminDetails = ({params}) => {
     }
 
     const handleDowloadClick = async (documentType) => {
-        console.log('token', token)
         const url = `https://ngt-markalbrand56.koyeb.app/admin/document/${params.username}/${documentType}`;
         const response = await fetch(url, {
             method: 'GET',

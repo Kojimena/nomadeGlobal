@@ -29,14 +29,12 @@ const AdminPage = () => {
       })
 
       if (!response.ok) {
-        console.log(response.message)
         throw new Error('Error al descargar el documento')
       }
 
       const data = await response.json();
       setCurrentData(data.users)
       setFilterData(data.users)
-      console.log(data)
     }
 
     const handleSearchChange = (event) => {
