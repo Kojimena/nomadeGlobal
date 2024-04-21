@@ -42,7 +42,7 @@ const Verification = ({params}) => {
         <img src="/images/verification.png" alt="logo" className="w-40 mx-auto"/>
     <h1 className="text-4xl font-bold font-montserrat text-white lg:w-2/3 text-center">Tu cuenta ha sido verificada correctamente!</h1>
     <div className="flex lg:flex-row flex-col items-center justify-center gap-10 ">
-        <button onClick={() => router.push('/login')} className="buttonForm">
+        <button onClick={() => router.push('/')} className="buttonForm">
             <p className="font-montserrat">Iniciar sesión</p>
         </button>
     </div> 
