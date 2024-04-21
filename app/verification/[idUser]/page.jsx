@@ -8,7 +8,7 @@ const Verification = ({params}) => {
 
     const handleVerify = async () => {
         const response = await fetch(`https://ngt-markalbrand56.koyeb.app/user/verify/email/${params.idUser}`, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             }
