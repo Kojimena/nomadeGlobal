@@ -41,10 +41,9 @@ const AdminPage = () => {
         setSearchTerm(event.target.value)        
     }
 
-    const filteredData = filterData.filter((person) => {
+    const filteredData = filterData ? filterData.filter((person) => {
         return person.username.toLowerCase().includes(searchTerm.toLowerCase())
-    }
-    )
+    }) : []
 
     const handleFilter = (role) => {
         const data = [...currentData]
@@ -132,7 +131,7 @@ const AdminPage = () => {
         </div>
       <div className='flex flex-col gap-4'>
         {
-            filteredData.map((person) => {
+            filterData && filteredData.map((person) => {
                 return (
                     <div className='relative w-full'key={person.username}>
                     <button className='w-full flex flex-col gap-4 border-lightBlue border-2 p-4 rounded-md relative hover:shadow-xl' onClick={() => handleClick(person.username)}>
@@ -149,6 +148,9 @@ const AdminPage = () => {
                 )
             }
             )
+        }
+        {
+            !filterData && <h2 className='text-darkBlue font-bold lg:text-start text-center'>No hay usuarios registrados</h2>
         }
         </div>
         {showPopUp && <AdvicePopUp message={message} setShowPopUp={setShowPopUp} onClose={handleClosePopUp}/>}
