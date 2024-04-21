@@ -65,7 +65,11 @@ const FormLogin = () => {
         } else {
           router.push('/uploader')
         }
-      }else {
+      }  else if (response.status === 403) {
+        setShowPopUp(true)
+        setError("Su correo no ha sido verificado. Por favor revise su bandeja de entrada.")
+      }
+      else {
         console.log(response.message)
         setShowPopUp(true)
         setError("No se pudo iniciar sesión. Intente nuevamente.")
