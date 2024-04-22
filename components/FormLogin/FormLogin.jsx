@@ -65,6 +65,9 @@ const FormLogin = () => {
       }  else if (response.status === 403) {
         setShowPopUp(true)
         setError("Su correo no ha sido verificado. Por favor revise su correo electrónico.")
+      } else if (response.status === 401) {
+        setShowPopUp(true)
+        setError("Usuario o contraseña incorrectos.")
       }
       else {
         setShowPopUp(true)
