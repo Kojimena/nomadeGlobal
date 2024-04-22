@@ -16,6 +16,8 @@ const Uploader = () => {
   const [token, setToken] = useState('')
   const [showPopUp, setShowPopUp] = useState(false)
   const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState({})
+
 
   const closePopUp = () => {
     setShowPopUp(false)
@@ -48,9 +50,6 @@ const Uploader = () => {
     window.open(file)
   }
 
-
-
-
   const handleDowloadClick = async (documentType) => {
     const url = `https://ngt-markalbrand56.koyeb.app/documents/${documentType}`;
     const response = await fetch(url, {
@@ -76,6 +75,8 @@ const Uploader = () => {
       setMessage('Por favor selecciona un archivo')
       return
     }
+
+    setLoading(prevLoading => ({ ...prevLoading, [documentType]: true }))
 
     const form = new FormData()
     form.append('files', selectedFile.file)
@@ -104,6 +105,7 @@ const Uploader = () => {
 
       setShowPopUp(true)
       setMessage('Documento subido correctamente')
+      setLoading(prevLoading => ({ ...prevLoading, [documentType]: false }))
       setTimeout(() => {
         setShowPopUp(false)
         window.location.reload()  
@@ -143,54 +145,61 @@ const Uploader = () => {
       <p className="text-lg font-montserrat font-bold text-white pb-2 lg:text-left text-center">Sube tus documentos para completar tu perfil</p>
       <span className="lg:text-md text-sm font-montserrat text-white pb-4 lg:text-left text-center">Recuerda que los documentos deben ser en formato PDF y no deben pesar más de 6MB. </span>
       <div className='flex flex-col items-center justify-center lg:gap-6 gap-8 pt-10'>
-        {documentos && Object.keys(documentos).map((documento, index) => {
-          if (index === 0){
-            return (
-              <div key={index} className='flex flex-col items-start gap-4 w-full'>
-                <InputDoc 
-                key={index}
-                nameDocument={documento}
-                status={documentosSubidos?.find(doc => doc.type === documento).status}
-                notes={documentosSubidos?.find(doc => doc.type === documento).notes}
-                onDocumentSelect={handleDocumentSelect}
-                onUploadClick={handleUploadClick}
-                valueInfo={documentos[documento]}
-                onDownloadClick={handleDowloadClick}
-                plantilla={true}
-                setPlantilla={handleDowloadFile}
-                />
-              </div>
-            )
-          }
-
-          else if ( documentosSubidos && documentosSubidos.some(doc => doc.type === documento && doc.status )){
-            return (
-              <InputDoc
-              key={index}
-              nameDocument={documento}
-              status= {documentosSubidos.find(doc => doc.type === documento).status}
-              notes = {documentosSubidos.find(doc => doc.type === documento).notes}
-              onDocumentSelect={handleDocumentSelect}
-              onUploadClick={handleUploadClick}
-              valueInfo={documentos[documento]}
-              onDownloadClick={handleDowloadClick}
-              />
-            )
-          }
-          else{
+        {documentos && Object.keys(documentos).map((documento, index) => {       
+            if (index === 0){
               return (
-                <InputDoc 
+                <div key={index} className='flex flex-col items-start gap-4 w-full'>
+                    <InputDoc 
+                      key={index}
+                      nameDocument={documento}
+                      status={documentosSubidos?.find(doc => doc.type === documento).status}
+                      notes={documentosSubidos?.find(doc => doc.type === documento).notes}
+                      onDocumentSelect={handleDocumentSelect}
+                      onUploadClick={handleUploadClick}
+                      valueInfo={documentos[documento]}
+                      onDownloadClick={handleDowloadClick}
+                      plantilla={true}
+                      setPlantilla={handleDowloadFile}
+                    />
+                </div>
+              )
+            }
+            else if ( documentosSubidos && documentosSubidos.some(doc => doc.type === documento && doc.status )){
+              return (
+                <InputDoc
                 key={index}
                 nameDocument={documento}
+                status= {documentosSubidos.find(doc => doc.type === documento).status}
+                notes = {documentosSubidos.find(doc => doc.type === documento).notes}
                 onDocumentSelect={handleDocumentSelect}
                 onUploadClick={handleUploadClick}
                 valueInfo={documentos[documento]}
                 onDownloadClick={handleDowloadClick}
                 />
               )
+            }
+            else if (loading[documento]){
+              return (
+                <span className="loading loading-dots loading-xs text-white" key={index}></span>
+              )
+            }
+            else{
+                return (
+                  <div key={index} className='flex flex-col items-start gap-4 w-full'>
+                    <InputDoc 
+                      key={index}
+                      nameDocument={documento}
+                      onDocumentSelect={handleDocumentSelect}
+                      onUploadClick={handleUploadClick}
+                      valueInfo={documentos[documento]}
+                      onDownloadClick={handleDowloadClick}
+                    />
+                </div>
+                )
+            }
           }
-        }
-        )}
+        
+          )}
       </div>
       {showPopUp && <AdvicePopUp message={message} onClose={closePopUp}/>}
     </div>
