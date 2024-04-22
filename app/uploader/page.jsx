@@ -140,7 +140,8 @@ const Uploader = () => {
     <div className='lg:p-20 p-10 w-full min-h-screen bg-darkBlue relative flex flex-col lg:justify-start justify-center'>
       <IoLogOut className='text-4xl text-white absolute top-0 right-0 cursor-pointer m-6' onClick={handleLogout}/>
       <h2 className="text-4xl font-Ourland text-yellow py-4 lg:text-left text-center">Documentos</h2>
-      <p className="text-lg font-montserrat font-bold text-white pb-4 lg:text-left text-center">Sube tus documentos para completar tu perfil</p>
+      <p className="text-lg font-montserrat font-bold text-white pb-2 lg:text-left text-center">Sube tus documentos para completar tu perfil</p>
+      <span className="lg:text-md text-sm font-montserrat text-white pb-4 lg:text-left text-center">Recuerda que los documentos deben ser en formato PDF y no deben pesar más de 6MB. </span>
       <div className='flex flex-col items-center justify-center lg:gap-6 gap-8 pt-10'>
         {documentos && Object.keys(documentos).map((documento, index) => {
           if (index === 0){
