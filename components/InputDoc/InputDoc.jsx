@@ -23,9 +23,9 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
   }
 
   const statusInfo = {
-    'Aprobado': "green-500",
-    'Rechazado': "red-500",
-    'En revisión': "orange"
+    'Aprobado': "accepted",
+    'Rechazado': "rejected",
+    'En revisión': "review"
   }
 
 
@@ -59,7 +59,7 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
                     }
                     {
                       status === "En revisión" ?
-                      <div className={`flex flex-col items-start gap-2 w-full bg-orange rounded-md`}>
+                      <div className={`flex flex-col items-start gap-2 w-full bg-review rounded-md`}>
                             <div className={`flex items-center gap-2 justify-between w-full`}>
                             <span className={`text-sm font-montserrat text-darkBlue p-2`}> - Estado: {status}</span>
                             <FaFileArrowDown className={`cursor-pointer text-lg text-darkBlue mr-2`} onClick={() => onDownloadClick(nameDocument)}/>
