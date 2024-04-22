@@ -83,7 +83,7 @@ const FormSignUpEnterprise = () => {
 
   return (
     <form className='lg:p-20 px-10 w-full bg-darkBlue h-screen imageBackground'>
-      {showNotification && <Notification message="Registro exitoso" onCancel={() => setShowNotification(false)} counterTime={true} timerAction={5} />}
+      {showNotification && <Notification message="Registro exitoso. Te hemos enviado un correo electrónico." onCancel={() => setShowNotification(false)} counterTime={true} timerAction={5} />}
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
