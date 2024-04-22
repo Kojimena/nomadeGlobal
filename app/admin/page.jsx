@@ -139,7 +139,7 @@ const AdminPage = () => {
                         <h2 className='text-black font-bold'>Usuario: <span className='font-medium'>{person.username}</span></h2>
                         <h2 className='text-black font-bold'>Nombre: <span className='font-medium'>{person.name} {person.lastName}</span></h2>
                         {
-                            person.program && <h2 className='text-black font-bold'>Programa de aplicación: <span className='font-medium'>{person.program}</span></h2>
+                            person.program && <h2 className='text-black font-bold'>Empresa: <span className='font-medium'>{person.program}</span></h2>
                         }
                         <h2 className='text-black font-bold'>Email: <span className='font-medium'>{person.email}</span></h2>
                     </button>

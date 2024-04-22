@@ -137,7 +137,7 @@ const FormSignUp = () => {
 
               <div className="col-span-full">
                 <label  className="labelForm">
-                  Programa de trabajo en el que quedaste seleccionado
+                  Empresa en la que quedaste seleccionado
                 </label>
                 <div className="mt-1">
                   <input
