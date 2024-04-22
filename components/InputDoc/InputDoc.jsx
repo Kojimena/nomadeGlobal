@@ -22,13 +22,6 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
     setShowInfo(!showInfo)
   }
 
-  const statusInfo = {
-    'Aprobado': "accepted",
-    'Rechazado': "rejected",
-    'En revisión': "review"
-  }
-
-
   return (
     <div className='flex flex-col w-full'>
         <div className='flex items-end gap-2 justify-between'>
@@ -44,8 +37,22 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
                     </span>
                   </label>
                   {
-                      status === "Aprobado" || status === "Rechazado" ?
-                      <div className={`flex flex-col items-start gap-2 w-full bg-${statusInfo[status]} rounded-md`}>
+                      status === "Rechazado" ?
+                      <div className={`flex flex-col items-start gap-2 w-full bg-rejected rounded-md`}>
+                        <div className={`flex items-center gap-2 justify-between w-full`}>
+                        <span className={`text-sm font-montserrat text-darkBlue p-2`}> - Estado: {status}</span>
+                        <FaFileArrowDown className={`cursor-pointer text-lg text-darkBlue mr-2`} onClick={() => onDownloadClick(nameDocument)}/>
+                        </div>
+                        {
+                            status !== "Aprobado" && notes ?
+                            <span className='text-black text-sm font-medium p-2 m-0'>Notas: {notes}, vuelva a subir su archivo.</span> : ''
+                        }
+                      </div> 
+                      :   ''
+                    }
+                    {
+                      status === "Aprobado" ?
+                      <div className={`flex flex-col items-start gap-2 w-full bg-accepted rounded-md`}>
                         <div className={`flex items-center gap-2 justify-between w-full`}>
                         <span className={`text-sm font-montserrat text-darkBlue p-2`}> - Estado: {status}</span>
                         <FaFileArrowDown className={`cursor-pointer text-lg text-darkBlue mr-2`} onClick={() => onDownloadClick(nameDocument)}/>
