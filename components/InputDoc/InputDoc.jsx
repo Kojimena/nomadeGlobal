@@ -32,7 +32,7 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
                     {nameDocument} 
                     {
                     valueInfo ?
-                    <FaCircleInfo className='text-yellow cursor-pointer text-lg' onClick={handleInfo} onMouseEnter={handleInfo}/> : ''
+                    <FaCircleInfo className='text-yellow cursor-pointer text-lg z-0' onClick={handleInfo} onMouseEnter={handleInfo}/> : ''
                     } 
                     </span>
                   </label>
@@ -80,7 +80,7 @@ const InputDoc = ({ nameDocument, onDocumentSelect, onUploadClick, status, notes
                     }
                   {
                     valueInfo && showInfo ?
-                    <span className='absolute bg-white text-darkBlue p-4 rounded-md text-sm font-montserrat flex flex-col gap-2 items-start'>
+                    <span className='absolute bg-white text-darkBlue p-4 rounded-md text-sm font-montserrat flex flex-col gap-2 items-start max-w-96 z-10'>
                       {valueInfo}
                       {
                         plantilla ? 

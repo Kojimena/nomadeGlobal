@@ -12,7 +12,7 @@ const Uploader = () => {
   const router = useRouter()
   const [documentos, setDocumentos] = useState([])
   const [documentosSubidos, setDocumentosSubidos] = useState([])
-  const [selectedFile, setSelectedFile] = useState(null)
+  const [selectedFiles, setSelectedFiles] = useState({})
   const [token, setToken] = useState('')
   const [showPopUp, setShowPopUp] = useState(false)
   const [message, setMessage] = useState('')
@@ -29,7 +29,7 @@ const Uploader = () => {
   }
 
   const handleDocumentSelect = (nameDocument, file) => {
-    setSelectedFile({ nameDocument, file })
+    setSelectedFiles(prevFiles => ({ ...prevFiles, [nameDocument]: file }))
   }
 
   const handleDowloadFile = async () => {
@@ -70,7 +70,9 @@ const Uploader = () => {
 
 
   const handleUploadClick = async (documentType) => {
-    if (!selectedFile || selectedFile.nameDocument !== documentType) {
+    const selectedFile = selectedFiles[documentType]
+
+    if (!selectedFile ) {
       setShowPopUp(true)
       setMessage('Por favor selecciona un archivo')
       return
@@ -79,7 +81,7 @@ const Uploader = () => {
     setLoading(prevLoading => ({ ...prevLoading, [documentType]: true }))
 
     const form = new FormData()
-    form.append('files', selectedFile.file)
+    form.append('files', selectedFile)
 
     try {
       const url = `https://ngt-markalbrand56.koyeb.app/documents/${documentType}`;
@@ -94,14 +96,15 @@ const Uploader = () => {
       if (response.status === 413) {
         setShowPopUp(true)
         setMessage('El archivo es muy grande')
+        setLoading(prevLoading => ({ ...prevLoading, [documentType]: false }))
         return
       }
       else if (response.status === 415) {
         setShowPopUp(true)
         setMessage('El archivo debe ser un pdf')
+        setLoading(prevLoading => ({ ...prevLoading, [documentType]: false }))
         return
       }
-
 
       setShowPopUp(true)
       setMessage('Documento subido correctamente')
@@ -145,26 +148,8 @@ const Uploader = () => {
       <p className="text-lg font-montserrat font-bold text-white pb-2 lg:text-left text-center">Sube tus documentos para completar tu perfil</p>
       <span className="lg:text-md text-sm font-montserrat text-white pb-4 lg:text-left text-center">Recuerda que los documentos deben ser en formato PDF y no deben pesar más de 6MB. </span>
       <div className='flex flex-col items-center justify-center lg:gap-6 gap-8 pt-10'>
-        {documentos && Object.keys(documentos).map((documento, index) => {       
-            if (index === 0){
-              return (
-                <div key={index} className='flex flex-col items-start gap-4 w-full'>
-                    <InputDoc 
-                      key={index}
-                      nameDocument={documento}
-                      status={documentosSubidos?.find(doc => doc.type === documento).status}
-                      notes={documentosSubidos?.find(doc => doc.type === documento).notes}
-                      onDocumentSelect={handleDocumentSelect}
-                      onUploadClick={handleUploadClick}
-                      valueInfo={documentos[documento]}
-                      onDownloadClick={handleDowloadClick}
-                      plantilla={true}
-                      setPlantilla={handleDowloadFile}
-                    />
-                </div>
-              )
-            }
-            else if ( documentosSubidos && documentosSubidos.some(doc => doc.type === documento && doc.status )){
+        {documentos && Object.keys(documentos).map((documento, index) => { 
+             if ( documentosSubidos && documentosSubidos.some(doc => doc.type === documento && doc.status )){
               return (
                 <InputDoc
                 key={index}
@@ -175,6 +160,8 @@ const Uploader = () => {
                 onUploadClick={handleUploadClick}
                 valueInfo={documentos[documento]}
                 onDownloadClick={handleDowloadClick}
+                plantilla={ documento === "Autorización de la empresa a favor del abogado" || documento === "Autorización del trabajador a favor del abogado" ? true : false}
+                setPlantilla={documento === "Autorización de la empresa a favor del abogado"||documento === "Autorización del trabajador a favor del abogado" ? handleDowloadFile : null}
                 />
               )
             }
@@ -193,8 +180,10 @@ const Uploader = () => {
                       onUploadClick={handleUploadClick}
                       valueInfo={documentos[documento]}
                       onDownloadClick={handleDowloadClick}
+                      plantilla={ documento === "Autorización de la empresa a favor del abogado" || documento === "Autorización del trabajador a favor del abogado" ? true : false}
+                      setPlantilla={documento === "Autorización de la empresa a favor del abogado" || documento === "Autorización del trabajador a favor del abogado" ? handleDowloadFile : null}      
                     />
-                </div>
+                  </div>
                 )
             }
           }

@@ -134,7 +134,7 @@ const AdminDetails = ({params}) => {
 
 
   return (
-    <div className='lg:p-20 p-10 w-full min-h-screen bg-white relative'>
+    <div className='lg:p-20 p-10 w-full  bg-white relative'>
         <FaRegArrowAltCircleLeft className='absolute top-10 left-10 text-2xl cursor-pointer text-darkBlue' onClick={() => router.back()} />
         <h2 className="text-4xl font-Ourland text-darkBlue py-4 lg:text-left text-center">Admin Panel</h2>
         <div className="flex flex-col lg:items-start items-center">
