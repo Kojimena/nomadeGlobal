@@ -96,7 +96,7 @@ const FormSignUp = () => {
 
 
   return (
-    <form className='lg:p-20 px-10 w-full bg-darkBlue h-screen imageBackground '>
+    <form className='lg:p-20 px-10 w-full bg-darkBlue imageBackground '>
       {showNotification && <Notification message="Registro exitoso. Te hemos enviado un correo electrónico." onCancel={() => setShowNotification(false)} counterTime={true} timerAction={5} />}
       <div id="stars"></div>
       <div id="stars2"></div>
@@ -205,7 +205,7 @@ const FormSignUp = () => {
               </button>
             </div>
           </>}
-          <div className='absolute bottom-0 lg:right-10 left-10'>
+          <div className='pt-10'>
             <SocialMedia /> 
           </div>
     </form>
